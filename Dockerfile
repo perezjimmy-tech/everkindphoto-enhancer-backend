@@ -11,6 +11,10 @@ WORKDIR /app
 COPY . .
 
 # instalar paquetes de Python
+# instalar compilador y herramientas necesarias para compilar insightface
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential g++ \
+    && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir -r requirements.txt
 
 # exponer puerto de Render/Railway
@@ -19,3 +23,4 @@ EXPOSE 8000
 # arrancar servidor
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
