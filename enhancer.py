@@ -1,7 +1,7 @@
 import io
 import numpy as np
 from PIL import Image, ImageEnhance
-from realesrgan import RealESRGAN
+from realesrgan.archs.srvgg_arch import SRVGGNetCompact as RealESRGAN
 from insightface.app import FaceAnalysis
 import torch
 
@@ -34,4 +34,5 @@ class PhotoEnhancer:
         img = ImageEnhance.Color(img).enhance(1.15)
         img = ImageEnhance.Contrast(img).enhance(1.08)
         img = ImageEnhance.Sharpness(img).enhance(1.08)
+
         return img
